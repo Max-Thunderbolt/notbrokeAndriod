@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ================ MAIN CONTAINER ================ -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:id="@+id/dashboard_activity"
+    tools:context=".DashboardActivity">
+
+    <!-- ================ APP BAR SECTION ================ -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" 
+            android:layout_height="?attr/actionBarSize"
+            
+            app:title="!Broke"
+            app:titleTextAppearance="@style/AppTheme.TitleText"
+            app:titleTextColor="#EAEAEA">
+
+            <!-- Profile Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/profileButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:text="Profile"
+                android:textColor="#EAEAEA"
+                app:icon="@drawable/ic_account"
+                app:iconSize="32dp"
+                app:iconTint="#E91E63"
+                app:strokeColor="#E91E63"
+                app:strokeWidth="2dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Content Area -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="54dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        
+        <!-- Main Dashboard Content -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/dashboardScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- ================ BALANCE CARD SECTION ================ -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#1E1E1E"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeColor="#F2DD3E"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Balance"
+                            android:textColor="#FFD700"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/balanceTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="R12,345.67"
+                            android:textColor="#FFD700"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
+
+                        <!-- ================ BALANCE ACTIONS ================ -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <!-- Income Button -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/addIncomeButton"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="Add Income"
+                                android:textColor="#EAEAEA"
+                                app:iconTint="#3CE91E"
+                                app:strokeColor="#3CE91E"
+                                app:strokeWidth="2dp" />
+
+                            <!-- Expense Button -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/addExpenseButton"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:text="Add Expense"
+                                android:textColor="#EAEAEA"
+                                app:iconTint="#E91E63"
+                                app:strokeColor="#E91E1E"
+                                app:strokeWidth="2dp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ================ TRANSACTIONS SECTION ================ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Recent Transactions"
+                    android:textColor="#EAEAEA"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Transactions List -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/transactionsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="8dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_transaction"
+                    tools:itemCount="5" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+        
+        <!-- Fragment Container for other screens -->
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- ================ BOTTOM NAVIGATION ================ -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:background="#E91E63"
+        app:itemIconSize="18dp"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:itemRippleColor="#33FFFFFF"
+        app:labelVisibilityMode="labeled"
+        style="@style/Widget.App.BottomNavigationView"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
